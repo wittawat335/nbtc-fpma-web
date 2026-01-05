@@ -46,3 +46,13 @@ next-env.d.ts
 .env.development.local
 .env.test.local
 .env.production.local
+.vs/Works/v17/.wsuo
+.vs/Works/v17/DocumentLayout.backup.json
+.vs/Works/v17/DocumentLayout.json
+.vs/slnx.sqlite
+.vs/VSWorkspaceState.json
+.vs/Works/FileContentIndex/32535393-e313-4ce6-885f-c5ebf0598c83.vsidx
+
+# Telerik / Kendo UI
+kendo-ui-license.txt
+telerik-license.txt
