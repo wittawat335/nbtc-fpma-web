@@ -63,9 +63,9 @@ export default function Navbar() {
             >
               <li>
                 <a
-                  href="#หน้าแรก"
+                  href="/"
                   onClick={closeAll}
-                  className="flex h-[46px] cursor-pointer items-center px-[20px] hover:bg-[#05547E]"
+                  className="flex h-[46px] cursor-pointer items-center bg-[#05547E] px-[20px]"
                 >
                   หน้าแรก
                 </a>
@@ -90,13 +90,13 @@ export default function Navbar() {
 
                 {openKey === "proposal" && (
                   <ul
-                    className={` ${mobileOpen ? "static" : "absolute"} top-full left-0 min-w-[220px] cursor-pointer bg-[#05547E]`}
+                    className={` ${mobileOpen ? "static" : "absolute"} top-full left-0 cursor-pointer bg-[#05547E]`}
                   >
                     <li>
                       <a
                         href="#ข้อเสนอโครงการ"
                         onClick={closeAll}
-                        className="block px-4 py-2 hover:bg-[#033A57]"
+                        className="menu"
                       >
                         ข้อเสนอโครงการ
                       </a>
@@ -105,7 +105,7 @@ export default function Navbar() {
                       <a
                         href="#ผลตรวจความซ้ำซ้อน"
                         onClick={closeAll}
-                        className="block px-4 py-2 hover:bg-[#033A57]"
+                        className="menu"
                       >
                         ผลตรวจความซ้ำซ้อน
                       </a>
@@ -114,7 +114,7 @@ export default function Navbar() {
                       <a
                         href="#กำหนดสิทธิ์ข้อเสนอโครงการ"
                         onClick={closeAll}
-                        className="block px-4 py-2 hover:bg-[#033A57]"
+                        className="menu"
                       >
                         กำหนดสิทธิ์ข้อเสนอโครงการ
                       </a>
@@ -123,7 +123,7 @@ export default function Navbar() {
                       <a
                         href="#แบบร่างข้อเสนอโครงการ"
                         onClick={closeAll}
-                        className="block px-4 py-2 hover:bg-[#033A57]"
+                        className="menu"
                       >
                         แบบร่างข้อเสนอโครงการ
                       </a>
@@ -142,14 +142,10 @@ export default function Navbar() {
 
                 {openKey === "report" && (
                   <ul
-                    className={` ${mobileOpen ? "static" : "absolute"} top-full left-0 min-w-[220px] bg-[#05547E]`}
+                    className={` ${mobileOpen ? "static" : "absolute"} top-full left-0 bg-[#05547E]`}
                   >
                     <li>
-                      <a
-                        href="#กราฟ"
-                        onClick={closeAll}
-                        className="block cursor-pointer px-4 py-2 hover:bg-[#033A57]"
-                      >
+                      <a href="#กราฟ" onClick={closeAll} className="menu">
                         กราฟ
                       </a>
                     </li>
@@ -157,7 +153,7 @@ export default function Navbar() {
                       <a
                         href="#รายงานภาพรวม"
                         onClick={closeAll}
-                        className="block cursor-pointer px-4 py-2 hover:bg-[#033A57]"
+                        className="menu"
                       >
                         รายงานภาพรวม
                       </a>
@@ -166,7 +162,7 @@ export default function Navbar() {
                       <a
                         href="#รายงานรายโครงการ"
                         onClick={closeAll}
-                        className="block cursor-pointer px-4 py-2 hover:bg-[#033A57]"
+                        className="menu"
                       >
                         รายงานรายโครงการ
                       </a>
@@ -175,7 +171,7 @@ export default function Navbar() {
                       <a
                         href="#ประวัติบุคคล/หน่วยงาน"
                         onClick={closeAll}
-                        className="block cursor-pointer px-4 py-2 hover:bg-[#033A57]"
+                        className="menu"
                       >
                         ประวัติบุคคล/หน่วยงาน
                       </a>
@@ -203,13 +199,13 @@ export default function Navbar() {
 
                 {openKey === "user" && (
                   <ul
-                    className={` ${mobileOpen ? "static" : "absolute"} top-full left-0 min-w-[220px] bg-[#05547E]`}
+                    className={` ${mobileOpen ? "static" : "absolute"} top-full left-0 bg-[#05547E]`}
                   >
                     <li>
                       <a
                         href="#จัดการผู้ใช้ภายใน"
                         onClick={closeAll}
-                        className="block cursor-pointer px-4 py-2 hover:bg-[#033A57]"
+                        className="menu"
                       >
                         จัดการผู้ใช้ภายใน
                       </a>
@@ -218,7 +214,7 @@ export default function Navbar() {
                       <a
                         href="#จัดการผู้ใช้ภายนอก"
                         onClick={closeAll}
-                        className="block cursor-pointer px-4 py-2 hover:bg-[#033A57]"
+                        className="menu"
                       >
                         จัดการผู้ใช้ภายนอก
                       </a>
@@ -237,23 +233,19 @@ export default function Navbar() {
 
                 {openKey === "settings" && (
                   <ul
-                    className={` ${mobileOpen ? "static" : "absolute"} top-full left-0 min-w-[220px] bg-[#05547E]`}
+                    className={` ${mobileOpen ? "static" : "absolute"} top-full left-0 bg-[#05547E]`}
                   >
                     <li>
                       <a
                         href="#Tags ข้อเสนอโครงการ"
                         onClick={closeAll}
-                        className="block cursor-pointer px-4 py-2 hover:bg-[#033A57]"
+                        className="menu"
                       >
                         Tags ข้อเสนอโครงการ
                       </a>
                     </li>
                     <li>
-                      <a
-                        href="#สถานะภาพ"
-                        onClick={closeAll}
-                        className="block cursor-pointer px-4 py-2 hover:bg-[#033A57]"
-                      >
+                      <a href="#สถานะภาพ" onClick={closeAll} className="menu">
                         สถานะภาพ
                       </a>
                     </li>

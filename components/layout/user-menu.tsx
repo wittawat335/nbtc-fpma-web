@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuth } from "@/hooks/useAuth";
-import { LogOut, User, Loader2 } from "lucide-react";
+import { LogOut, User, Loader2, Bell } from "lucide-react";
 
 export default function UserMenu() {
   const { user, logout, isLoading } = useAuth();
@@ -27,6 +27,12 @@ export default function UserMenu() {
         </div>
         <div className="flex h-10 w-10 items-center justify-center rounded-full border border-blue-100 bg-blue-50 text-blue-600">
           <User size={20} />
+        </div>
+        <div className="relative">
+          <Bell size={20} />
+          <div className="absolute -top-1 -right-2 flex h-[15px] w-4 content-center items-center justify-center rounded-full bg-[#e7000b] text-[9px] text-white">
+            10
+          </div>
         </div>
         <div className="mx-1 h-8 w-[1px] bg-gray-200"></div>
         <button
