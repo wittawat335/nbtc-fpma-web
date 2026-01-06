@@ -131,4 +131,8 @@
     cursor: default;
     position: relative;
   }
+
+  .TopMenu .menu {
+    @apply block cursor-pointer px-4 py-2 whitespace-nowrap hover:bg-[#033A57];
+  }
 }
