@@ -117,7 +117,6 @@ export default function ProposalFormContainer({
         </form>
       </FormProvider>
 
-      {/* [UPDATED] ใช้ AlertDialog แทน Modal เดิม */}
       <AlertDialog open={showConfirmModal} onOpenChange={setShowConfirmModal}>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -138,7 +137,6 @@ export default function ProposalFormContainer({
         </AlertDialogContent>
       </AlertDialog>
 
-      {/* [UPDATED] Success Dialog */}
       <AlertDialog 
         open={showSuccessModal} 
         onOpenChange={(open) => {

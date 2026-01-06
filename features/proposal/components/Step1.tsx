@@ -13,6 +13,7 @@ import ProposalFormSkeleton from "./ProposalFormSkeleton";
 import { useSyncAddress } from "../hooks";
 import { UI_CLASSES } from "@/constants";
 import { Proposals } from "@/types";
+import { getFormError } from "@/lib";
 
 interface Step1Props {
   data?: Proposals;
@@ -20,7 +21,11 @@ interface Step1Props {
 }
 
 export default function Step1({ data, proposalId }: Step1Props) {
-  const { register, control } = useFormContext<CreateProposalForm>();
+  const {
+    register,
+    control,
+    formState: { errors },
+  } = useFormContext<CreateProposalForm>();
   const { data: titles } = useMasterData("prefix");
   const { data: provinces } = useMasterData("province");
   const { data: districts } = useMasterData("district");
@@ -125,32 +130,52 @@ export default function Step1({ data, proposalId }: Step1Props) {
             />
             <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-4">
               <div>
-                <label className="text-sm">โทรศัพท์</label>
+                <label className="text-sm">
+                  โทรศัพท์ <span className="text-red-600">*</span>
+                </label>
                 <input
                   {...register("projectAddress.tel")}
                   className={UI_CLASSES.input}
                 />
+                <p className="mt-1 text-xs text-red-600">
+                  {getFormError(errors, "tel", "projectAddress")}
+                </p>
               </div>
               <div>
-                <label className="text-sm">โทรสาร</label>
+                <label className="text-sm">
+                  โทรสาร <span className="text-red-600">*</span>
+                </label>
                 <input
                   {...register("projectAddress.fax")}
                   className={UI_CLASSES.input}
                 />
+                <p className="mt-1 text-xs text-red-600">
+                  {getFormError(errors, "fax", "projectAddress")}
+                </p>
               </div>
               <div>
-                <label className="text-sm">อีเมล</label>
+                <label className="text-sm">
+                  อีเมล <span className="text-red-600">*</span>
+                </label>
                 <input
                   {...register("projectAddress.email")}
                   className={UI_CLASSES.input}
                 />
+                <p className="mt-1 text-xs text-red-600">
+                  {getFormError(errors, "email", "projectAddress")}
+                </p>
               </div>
               <div>
-                <label className="text-sm">เว็บไซต์</label>
+                <label className="text-sm">
+                  เว็บไซต์ <span className="text-red-600">*</span>
+                </label>
                 <input
                   {...register("projectAddress.webSite")}
                   className={UI_CLASSES.input}
                 />
+                <p className="mt-1 text-xs text-red-600">
+                  {getFormError(errors, "webSite", "projectAddress")}
+                </p>
               </div>
             </div>
           </div>
@@ -188,20 +213,56 @@ export default function Step1({ data, proposalId }: Step1Props) {
             />
             <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
               <div>
-                <label className="text-sm">โทรศัพท์</label>
+                <label className="text-sm">
+                  โทรศัพท์ <span className="text-red-600">*</span>
+                </label>
                 <input
                   disabled={sameContactAddress}
                   {...register("contactAddress.tel")}
                   className={UI_CLASSES.input}
                 />
+                <p className="mt-1 text-xs text-red-600">
+                  {getFormError(errors, "tel", "contactAddress")}
+                </p>
               </div>
               <div>
-                <label className="text-sm">โทรสาร</label>
+                <label className="text-sm">
+                  โทรสาร <span className="text-red-600">*</span>
+                </label>
                 <input
                   disabled={sameContactAddress}
                   {...register("contactAddress.fax")}
                   className={UI_CLASSES.input}
                 />
+                <p className="mt-1 text-xs text-red-600">
+                  {getFormError(errors, "fax", "contactAddress")}
+                </p>
+              </div>
+              <div>
+                <label className="text-sm">
+                  อีเมล <span className="text-red-600">*</span>
+                </label>
+                <input
+                  disabled={sameContactAddress}
+                  {...register("contactAddress.email")}
+                  className={UI_CLASSES.input}
+                />
+                <p className="mt-1 text-xs text-red-600">
+                  {getFormError(errors, "email", "contactAddress")}
+                </p>
+              </div>
+              <div>
+                <label className="text-sm">
+                  เว็บไซต์ <span className="text-red-600">*</span>
+                </label>
+                <input
+                  disabled={sameContactAddress}
+                  {...register("contactAddress.webSite")}
+                  className={UI_CLASSES.input}
+                />
+                <p className="mt-1 text-xs text-red-600">
+                  {getFormError(errors, "webSite", "contactAddress")}
+                </p>
               </div>
             </div>
           </div>

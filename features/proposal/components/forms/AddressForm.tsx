@@ -3,6 +3,7 @@ import { UI_CLASSES } from "@/constants";
 import { useFormContext, useWatch } from "react-hook-form";
 import { useEffect, useMemo } from "react";
 import { DistrictOption, ProvinceOption, SubDistrictOption } from "@/types";
+import { getFormError } from "@/lib";
 
 export interface AddressFormProps {
   prefix: string;
@@ -21,7 +22,12 @@ export const AddressForm = ({
   districts = [],
   subDistricts = [],
 }: AddressFormProps) => {
-  const { register, control, setValue } = useFormContext();
+  const {
+    register,
+    control,
+    setValue,
+    formState: { errors },
+  } = useFormContext();
 
   const selectedProvinceCode = useWatch({
     control,
@@ -37,7 +43,8 @@ export const AddressForm = ({
     if (!selectedProvinceCode) return [];
 
     return districts.filter(
-      (d: DistrictOption) => String(d.provinceId) === String(selectedProvinceCode),
+      (d: DistrictOption) =>
+        String(d.provinceId) === String(selectedProvinceCode),
     );
   }, [selectedProvinceCode, districts]);
 
@@ -45,7 +52,8 @@ export const AddressForm = ({
     if (!selectedDistrictCode) return [];
 
     return subDistricts.filter(
-      (s: SubDistrictOption) => String(s.districtsId) === String(selectedDistrictCode),
+      (s: SubDistrictOption) =>
+        String(s.districtsId) === String(selectedDistrictCode),
     );
   }, [selectedDistrictCode, subDistricts]);
 
@@ -86,33 +94,51 @@ export const AddressForm = ({
             {...register(`${prefix}.no`)}
             className={UI_CLASSES.input}
           />
+          <p className="mt-1 text-xs text-red-600">
+            {getFormError(errors, "no", prefix)}
+          </p>
         </div>
 
         <div>
-          <label className="text-sm text-gray-700">หมู่ที่</label>
+          <label className="text-sm text-gray-700">
+            หมู่ที่ <span className="text-red-600">*</span>
+          </label>
           <input
             disabled={disabled}
             {...register(`${prefix}.moo`)}
             className={UI_CLASSES.input}
           />
+          <p className="mt-1 text-xs text-red-600">
+            {getFormError(errors, "moo", prefix)}
+          </p>
         </div>
 
         <div>
-          <label className="text-sm text-gray-700">อาคาร/หมู่บ้าน</label>
+          <label className="text-sm text-gray-700">
+            อาคาร/หมู่บ้าน <span className="text-red-600">*</span>
+          </label>
           <input
             disabled={disabled}
             {...register(`${prefix}.village`)}
             className={UI_CLASSES.input}
           />
+          <p className="mt-1 text-xs text-red-600">
+            {getFormError(errors, "village", prefix)}
+          </p>
         </div>
 
         <div>
-          <label className="text-sm text-gray-700">ถนน</label>
+          <label className="text-sm text-gray-700">
+            ถนน <span className="text-red-600">*</span>
+          </label>
           <input
             disabled={disabled}
             {...register(`${prefix}.road`)}
             className={UI_CLASSES.input}
           />
+          <p className="mt-1 text-xs text-red-600">
+            {getFormError(errors, "road", prefix)}
+          </p>
         </div>
 
         <div>
@@ -131,10 +157,15 @@ export const AddressForm = ({
               </option>
             ))}
           </select>
+          <p className="mt-1 text-xs text-red-600">
+            {getFormError(errors, "province", prefix)}
+          </p>
         </div>
 
         <div>
-          <label className="text-sm text-gray-700">อำเภอ/เขต</label>
+          <label className="text-sm text-gray-700">
+            อำเภอ/เขต <span className="text-red-600">*</span>
+          </label>
           <select
             disabled={disabled}
             {...register(`${prefix}.district`)}
@@ -147,10 +178,15 @@ export const AddressForm = ({
               </option>
             ))}
           </select>
+          <p className="mt-1 text-xs text-red-600">
+            {getFormError(errors, "district", prefix)}
+          </p>
         </div>
 
         <div>
-          <label className="text-sm text-gray-700">ตำบล/แขวง</label>
+          <label className="text-sm text-gray-700">
+            ตำบล/แขวง <span className="text-red-600">*</span>
+          </label>
           <select
             disabled={disabled}
             {...register(`${prefix}.subDistrict`)}
@@ -163,15 +199,23 @@ export const AddressForm = ({
               </option>
             ))}
           </select>
+          <p className="mt-1 text-xs text-red-600">
+            {getFormError(errors, "subDistrict", prefix)}
+          </p>
         </div>
 
         <div>
-          <label className="text-sm text-gray-700">รหัสไปรษณีย์</label>
+          <label className="text-sm text-gray-700">
+            รหัสไปรษณีย์ <span className="text-red-600">*</span>
+          </label>
           <input
             disabled={disabled}
             {...register(`${prefix}.postalCode`)}
             className={UI_CLASSES.input}
           />
+          <p className="mt-1 text-xs text-red-600">
+            {getFormError(errors, "postalCode", prefix)}
+          </p>
         </div>
       </div>
     </div>

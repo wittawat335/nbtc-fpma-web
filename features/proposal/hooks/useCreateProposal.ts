@@ -15,12 +15,19 @@ import { useProposalData } from "./useProposalData";
 const STEP_FIELDS: Record<number, (keyof CreateProposalForm)[]> = {
   1: [
     "organizationName",
+    "departmentName",
     "name",
     "budget",
     "duration",
     "organizationTypeId",
     "resposiiblePerson",
+    "projectAddress",
+    "contactAddress",
+    "taxId",
     "taxBranchCode",
+    "organizationStatusId",
+    "vat",
+    "withholdingTax",
   ],
   2: [
     "principlesOf",
@@ -106,11 +113,11 @@ export const useCreateProposal = (idProp?: number) => {
     data.proposalStatusId = FormStatus.ProposalStep1.SAVE_DRAFT;
 
     const newId = await saveProposal(
-      data, 
-      proposalId, 
-      user?.id, 
-      false, 
-      "กำลังบันทึกแบบร่าง..."
+      data,
+      proposalId,
+      user?.id,
+      false,
+      "กำลังบันทึกแบบร่าง...",
     );
 
     if (!proposalId && newId) {
@@ -125,7 +132,9 @@ export const useCreateProposal = (idProp?: number) => {
   const handleNext = async () => {
     const fieldsToValidate = STEP_FIELDS[currentStep] || [];
     if (fieldsToValidate.length > 0) {
-      const isValid = await methods.trigger(fieldsToValidate);
+      const isValid = await methods.trigger(fieldsToValidate, {
+        shouldFocus: true,
+      });
       if (!isValid) {
         toast.error(Msg.error.validationFailed);
         return;
@@ -137,11 +146,11 @@ export const useCreateProposal = (idProp?: number) => {
 
     try {
       const savedId = await saveProposal(
-        data, 
-        proposalId, 
-        user?.id, 
-        true, 
-        "กำลังบันทึกและดำเนินการต่อ..."
+        data,
+        proposalId,
+        user?.id,
+        true,
+        "กำลังบันทึกและดำเนินการต่อ...",
       );
 
       if (savedId) {
@@ -179,13 +188,13 @@ export const useCreateProposal = (idProp?: number) => {
       finalData.proposalStatusId = FormStatus.ProposalStep1.REVIEW;
 
       await saveProposal(
-        finalData, 
-        proposalId, 
-        user?.id, 
-        false, 
-        "กำลังส่งข้อมูล..."
+        finalData,
+        proposalId,
+        user?.id,
+        false,
+        "กำลังส่งข้อมูล...",
       );
-      
+
       setShowSuccessModal(true);
     } catch (error) {
       // Error handled in saveProposal action

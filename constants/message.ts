@@ -46,7 +46,7 @@ export const Msg = {
   // เกี่ยวกับข้อมูลบุคคล (Proposal / Person)
   person: {
     prefix: "ระบุคำนำหน้า",
-    firstname: "ระบุชื่อจริง", // Updated from ProposalValidation
+    firstname: "ระบุชื่อจริง",
     lastname: "ระบุนามสกุล",
     position: "ระบุตำแหน่ง",
   },
@@ -54,10 +54,11 @@ export const Msg = {
   // เกี่ยวกับโครงการ (Proposal)
   proposal: {
     orgName: "ระบุชื่อหน่วยงาน",
+    departmentName: "ระบุหน่วยงานย่อย / คณะ",
     projectName: "ระบุชื่อโครงการ",
     budget: "ระบุงบประมาณ",
     duration: "ระบุระยะเวลา",
-    taxBranchCode: "ระบุรหัสสาขาภาษี", // [NEW] from ProposalValidation
+    taxBranchCode: "ระบุรหัสสาขาภาษี",
 
     // Step 2: รายละเอียดโครงการ (Merged from ProposalValidation)
     step2: {
@@ -77,13 +78,13 @@ export const Msg = {
 
     // Location
     location: {
-      province: "กรุณาเลือกจังหวัด", // or "เลือกจังหวัด"
-      district: "กรุณาเลือกอำเภอ", // or "เลือกอำเภอ"
-      subDistrict: "กรุณาเลือกตำบล", // or "เลือกตำบล"
+      province: "กรุณาเลือกจังหวัด",
+      district: "กรุณาเลือกอำเภอ",
+      subDistrict: "กรุณาเลือกตำบล",
       requireOne: "กรุณาระบุพื้นที่อย่างน้อย 1 แห่ง",
-      provinceId: "เลือกจังหวัด", // [NEW] for validation usage
-      districtId: "เลือกอำเภอ", // [NEW] for validation usage
-      subDistrictId: "เลือกตำบล", // [NEW] for validation usage
+      provinceId: "เลือกจังหวัด",
+      districtId: "เลือกอำเภอ",
+      subDistrictId: "เลือกตำบล",
     },
 
     // Budget 01 (Merged from ProposalValidation)
@@ -100,9 +101,9 @@ export const Msg = {
       quantity: "ระบุจำนวน",
       unitPrice: "ระบุราคา",
       other: "ระบุอื่นๆ",
-      remark: "ระบุหมายเหตุ", // Legacy support
-      price: "ระบุจำนวนเงินต่อคน(บาท)", // Legacy support
-      itemRequired: "ต้องมีอย่างน้อย 1 รายการ", // Legacy support
+      remark: "ระบุหมายเหตุ",
+      price: "ระบุจำนวนเงินต่อคน(บาท)",
+      itemRequired: "ต้องมีอย่างน้อย 1 รายการ",
     },
   },
 
@@ -150,7 +151,6 @@ export const Msg = {
     confirm: "ยืนยัน",
     confirmMessage: "คุณต้องการบันทึกข้อมูลใช่หรือไม่",
 
-    // [NEW] Modal Messages
     confirmSubmitTitle: "ยืนยันการส่งข้อมูล",
     confirmSubmitMessage: "คุณต้องการยืนยันการส่งข้อมูลใช่หรือไม่?",
     submitSuccessTitle: "ส่งข้อมูลสำเร็จ",

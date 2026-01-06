@@ -1,10 +1,14 @@
 "use client";
 import { UI_CLASSES } from "@/constants";
+import { getFormError } from "@/lib";
 import React from "react";
 import { useFormContext } from "react-hook-form";
 
 export const TaxInfoForm = ({ disabled = false }: { disabled?: boolean }) => {
-  const { register } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <div className="mx-2 space-y-6 rounded-xl bg-white px-6 py-4 md:mx-5">
@@ -25,6 +29,9 @@ export const TaxInfoForm = ({ disabled = false }: { disabled?: boolean }) => {
               {...register("taxId")}
               className={UI_CLASSES.input}
             />
+            <p className="mt-1 text-xs text-red-600">
+              {getFormError(errors, "taxId")}
+            </p>
           </div>
           <div>
             <label className="text-sm">
@@ -35,6 +42,9 @@ export const TaxInfoForm = ({ disabled = false }: { disabled?: boolean }) => {
               {...register("taxBranchCode")}
               className={UI_CLASSES.input}
             />
+            <p className="mt-1 text-xs text-red-600">
+              {getFormError(errors, "taxBranchCode")}
+            </p>
           </div>
           <div>
             <label className="text-sm">
@@ -50,6 +60,9 @@ export const TaxInfoForm = ({ disabled = false }: { disabled?: boolean }) => {
               <option value="2">บุคคลธรรมดา</option>
               <option value="3">คณะบุคคล</option>
             </select>
+            <p className="mt-1 text-xs text-red-600">
+              {getFormError(errors, "organizationStatusId")}
+            </p>
           </div>
           <div>
             <label className="text-sm">
@@ -64,6 +77,9 @@ export const TaxInfoForm = ({ disabled = false }: { disabled?: boolean }) => {
               <option value="1">จดทะเบียน</option>
               <option value="0">ไม่จดทะเบียน</option>
             </select>
+            <p className="mt-1 text-xs text-red-600">
+              {getFormError(errors, "vat")}
+            </p>
           </div>
           <div>
             <label className="text-sm">
@@ -78,6 +94,9 @@ export const TaxInfoForm = ({ disabled = false }: { disabled?: boolean }) => {
               <option value="1">หักภาษี ณ ที่จ่าย</option>
               <option value="0">ได้รับการยกเว้น</option>
             </select>
+            <p className="mt-1 text-xs text-red-600">
+              {getFormError(errors, "withholdingTax")}
+            </p>
           </div>
         </div>
       </div>

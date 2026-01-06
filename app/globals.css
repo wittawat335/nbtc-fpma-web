@@ -123,3 +123,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .k-grid .k-grid-header .k-table-th {
+    @apply bg-[#05547e] text-white;
+    vertical-align: bottom;
+    cursor: default;
+    position: relative;
+  }
+}

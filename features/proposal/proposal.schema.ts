@@ -1,32 +1,32 @@
 import { z } from "zod";
 import { Msg } from "@/constants";
 
-// --- Shared Schemas (ตรงกับ shared dto) ---
+// --- Shared Schemas ---
 
 export const IdentityDocumentSchema = z.object({
-  type: z.string().optional(),
-  no: z.string().optional(),
-  issuedBy: z.string().optional(),
+  type: z.string().min(1, Msg.selection),
+  no: z.string().min(1, Msg.required),
+  issuedBy: z.string().min(1, Msg.required),
   issuedProvince: z.string().optional(),
 });
 
 export const AddressSchema = z.object({
-  province: z.string().optional(),
-  no: z.string().optional(),
-  moo: z.string().optional(),
-  village: z.string().optional(),
-  road: z.string().optional(),
-  district: z.string().optional(),
-  subDistrict: z.string().optional(),
-  postalCode: z.string().optional(),
+  province: z.string().min(1, Msg.proposal.location.province),
+  no: z.string().min(1, Msg.required),
+  moo: z.string().min(1, Msg.required),
+  village: z.string().min(1, Msg.required),
+  road: z.string().min(1, Msg.required),
+  district: z.string().min(1, Msg.proposal.location.district),
+  subDistrict: z.string().min(1, Msg.proposal.location.subDistrict),
+  postalCode: z.string().min(1, Msg.required),
 });
 
 // Extends AddressDto
 export const LocationAddressSchema = AddressSchema.extend({
-  tel: z.string().optional(),
-  fax: z.string().optional(),
-  email: z.string().email(Msg.email).optional().or(z.literal("")),
-  webSite: z.string().optional(),
+  tel: z.string().min(1, Msg.required),
+  fax: z.string().min(1, Msg.required),
+  email: z.string().min(1, Msg.required).email(Msg.email),
+  webSite: z.string().min(1, Msg.required),
 });
 
 // Extends LocationAddressDto
@@ -38,14 +38,14 @@ export const PersonSchema = z.object({
   prefix: z.string().min(1, Msg.person.prefix),
   firstname: z.string().min(1, Msg.person.firstname),
   lastname: z.string().min(1, Msg.person.lastname),
-  position: z.string().optional(),
-  tel: z.string().optional(),
-  fax: z.string().optional(),
-  email: z.string().email(Msg.email).optional().or(z.literal("")),
-  age: z.coerce.number().optional(),
-  nationality: z.string().optional(),
-  identityDocument: IdentityDocumentSchema.optional(),
-  address: AddressSchema.optional(),
+  position: z.string().min(1, Msg.person.position),
+  tel: z.string().min(1, Msg.required),
+  fax: z.string().min(1, Msg.required),
+  email: z.string().min(1, Msg.required).email(Msg.email),
+  age: z.coerce.number().min(1, Msg.required),
+  nationality: z.string().min(1, Msg.required),
+  identityDocument: IdentityDocumentSchema,
+  address: AddressSchema,
 });
 
 // --- Modified: MandatePersonSchema ---
@@ -151,7 +151,7 @@ export const Budget01Schema = z.object({
 export const CreateProposalSchema = z.object({
   // 1.1
   organizationName: z.string().min(1, Msg.proposal.orgName),
-  departmentName: z.string().optional(),
+  departmentName: z.string().min(1, Msg.proposal.departmentName),
 
   // 1.2
   name: z.string().min(1, Msg.proposal.projectName),
@@ -162,37 +162,34 @@ export const CreateProposalSchema = z.object({
   duration: z.coerce.number().min(1, Msg.proposal.duration),
 
   // 1.5
-  organizationTypeId: z.coerce.number().optional(),
+  organizationTypeId: z.string().min(1, Msg.selection),
 
   // 1.6 - 1.11
   resposiiblePerson: PersonSchema,
 
   // 1.7
-  authorityPerson: MandatePersonSchema.optional(),
+  authorityPerson: PersonSchema,
 
   // 1.8
   attorneyPerson: MandatePersonSchema.optional(),
 
   contactPerson: ContactPersonSchema.optional(),
 
-  projectAddress: LocationAddressSchema.optional(),
-  contactAddress: ContactAddressSchema.optional(),
+  projectAddress: LocationAddressSchema,
+  contactAddress: ContactAddressSchema,
 
   // 1.12
-  taxId: z.string().optional(),
+  taxId: z.string().min(1, Msg.required),
   taxBranchCode: z.string().min(1, Msg.proposal.taxBranchCode),
-  organizationStatusId: z.coerce.number().optional(),
-  vat: z.coerce.number().optional(),
-  withholdingTax: z.coerce.number().optional(),
+  organizationStatusId: z.coerce.string().min(1, Msg.selection),
+  vat: z.coerce.string().min(1, Msg.selection),
+  withholdingTax: z.coerce.string().min(1, Msg.selection),
   taxExemption: z.coerce.number().optional(),
 
   proposalStatusId: z.coerce.number().optional(),
 
   // Step 3
-  locations: z
-    .array(ProposalLocationSchema)
-    //.min(1, "ระบุสถานที่")
-    .optional(),
+  locations: z.array(ProposalLocationSchema).optional(),
 
   // Budget 01
   budget_01: Budget01Schema,

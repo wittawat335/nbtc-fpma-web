@@ -42,7 +42,7 @@ export const GeneralProjectInfo = ({
 
           <div>
             <label className="mb-1 block text-sm text-gray-700">
-              หน่วยงานย่อย / คณะ
+              หน่วยงานย่อย / คณะ <span className="text-red-600">*</span>
             </label>
             <input
               disabled={disabled}
@@ -50,6 +50,9 @@ export const GeneralProjectInfo = ({
               className={UI_CLASSES.input}
               placeholder="ระบุหน่วยงานย่อย"
             />
+            <p className="mt-1 text-xs text-red-600">
+              {getFormError(errors, "departmentName")}
+            </p>
           </div>
         </div>
       </div>
@@ -96,10 +99,10 @@ export const GeneralProjectInfo = ({
           <input
             disabled={disabled}
             type="number"
-            step="0.01"
+            step="1"
             {...register("budget")}
             className={`${UI_CLASSES.input} text-right`}
-            placeholder="0.00"
+            placeholder="0"
           />
           <p className="mt-1 text-xs text-red-600">
             {getFormError(errors, "budget")}
@@ -137,7 +140,8 @@ export const GeneralProjectInfo = ({
       <div className="mx-2 space-y-6 rounded-xl bg-white px-6 py-4 md:mx-5">
         <div className="">
           <div className="text-sm font-semibold text-gray-800">
-            1.5 คุณสมบัติผู้ขอรับการส่งเสริมและสนับสนุนเงินจากกองทุน
+            1.5 คุณสมบัติผู้ขอรับการส่งเสริมและสนับสนุนเงินจากกองทุน{" "}
+            <span className="text-red-600">*</span>
           </div>
           <div className="mt-1 h-[2px] w-10 rounded bg-blue-500/70" />
         </div>

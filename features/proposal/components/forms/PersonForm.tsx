@@ -61,7 +61,9 @@ export const PersonForm = ({
                 </option>
               ))}
             </select>
-            <p className="text-xs text-red-500">{getFormError(errors, "prefix", prefix)}</p>
+            <p className="text-xs text-red-500">
+              {getFormError(errors, "prefix", prefix)}
+            </p>
           </div>
           <div>
             <label className="text-sm">
@@ -72,7 +74,9 @@ export const PersonForm = ({
               {...register(`${prefix}.firstname`)}
               className={UI_CLASSES.input}
             />
-            <p className="text-xs text-red-500">{getFormError(errors, "firstname", prefix)}</p>
+            <p className="text-xs text-red-500">
+              {getFormError(errors, "firstname", prefix)}
+            </p>
           </div>
           <div>
             <label className="text-sm">
@@ -83,7 +87,9 @@ export const PersonForm = ({
               {...register(`${prefix}.lastname`)}
               className={UI_CLASSES.input}
             />
-            <p className="text-xs text-red-500">{getFormError(errors, "lastname", prefix)}</p>
+            <p className="text-xs text-red-500">
+              {getFormError(errors, "lastname", prefix)}
+            </p>
           </div>
         </div>
 
@@ -98,6 +104,9 @@ export const PersonForm = ({
               {...register(`${prefix}.position`)}
               className={UI_CLASSES.input}
             />
+            <p className="mt-1 text-xs text-red-600">
+              {getFormError(errors, "position", prefix)}
+            </p>
           </div>
           <div>
             <label className="text-sm">
@@ -109,14 +118,22 @@ export const PersonForm = ({
               className={UI_CLASSES.input}
               placeholder="0xx-xxxxxxx"
             />
+            <p className="mt-1 text-xs text-red-600">
+              {getFormError(errors, "tel", prefix)}
+            </p>
           </div>
           <div>
-            <label className="text-sm">โทรสาร</label>
+            <label className="text-sm">
+              โทรสาร <span className="text-red-600">*</span>
+            </label>
             <input
               disabled={disabled}
               {...register(`${prefix}.fax`)}
               className={UI_CLASSES.input}
             />
+            <p className="mt-1 text-xs text-red-600">
+              {getFormError(errors, "fax", prefix)}
+            </p>
           </div>
           <div>
             <label className="text-sm">
@@ -127,23 +144,36 @@ export const PersonForm = ({
               {...register(`${prefix}.email`)}
               className={UI_CLASSES.input}
             />
+            <p className="mt-1 text-xs text-red-600">
+              {getFormError(errors, "email", prefix)}
+            </p>
           </div>
           <div>
-            <label className="text-sm">อายุ (ปี)</label>
+            <label className="text-sm">
+              อายุ (ปี) <span className="text-red-600">*</span>
+            </label>
             <input
               disabled={disabled}
               type="number"
               {...register(`${prefix}.age`)}
               className={UI_CLASSES.input}
             />
+            <p className="mt-1 text-xs text-red-600">
+              {getFormError(errors, "age", prefix)}
+            </p>
           </div>
           <div>
-            <label className="text-sm">สัญชาติ</label>
+            <label className="text-sm">
+              สัญชาติ <span className="text-red-600">*</span>
+            </label>
             <input
               disabled={disabled}
               {...register(`${prefix}.nationality`)}
               className={UI_CLASSES.input}
             />
+            <p className="mt-1 text-xs text-red-600">
+              {getFormError(errors, "nationality", prefix)}
+            </p>
           </div>
         </div>
 
@@ -162,6 +192,9 @@ export const PersonForm = ({
                 <option value="บัตรประจำตัวประชาชน">บัตรประจำตัวประชาชน</option>
                 <option value="หนังสือเดินทาง">หนังสือเดินทาง</option>
               </select>
+              <p className="mt-1 text-xs text-red-600">
+                {getFormError(errors, "type", `${prefix}.identityDocument`)}
+              </p>
             </div>
             <div>
               <label className="text-sm">
@@ -174,14 +207,22 @@ export const PersonForm = ({
                 className={UI_CLASSES.input}
                 placeholder="x-xxxx-xxxxx-xx-x"
               />
+              <p className="mt-1 text-xs text-red-600">
+                {getFormError(errors, "no", `${prefix}.identityDocument`)}
+              </p>
             </div>
             <div>
-              <label className="text-sm">ออกให้โดย</label>
+              <label className="text-sm">
+                ออกให้โดย <span className="text-red-600">*</span>
+              </label>
               <input
                 disabled={disabled}
                 {...register(`${prefix}.identityDocument.issuedBy`)}
                 className={UI_CLASSES.input}
               />
+              <p className="mt-1 text-xs text-red-600">
+                {getFormError(errors, "issuedBy", `${prefix}.identityDocument`)}
+              </p>
             </div>
           </div>
         )}
